@@ -1,7 +1,7 @@
 use super::super::flowmessage::FlowMessage;
 use super::Publisher;
 use anyhow::Result;
-use csv::{Writer, WriterBuilder};
+use csv::{WriterBuilder};
 use std::{fmt::Display, io::stdout};
 
 #[derive(Debug, Clone)]
@@ -32,8 +32,6 @@ impl Display for CsvPublisher {
 
 impl Publisher for CsvPublisher {
     fn box_clone(&self) -> Box<dyn Publisher> {
-        let mut wtr = Writer::from_writer(stdout());
-        wtr.flush().unwrap();
         Box::new(self.clone())
     }
 
