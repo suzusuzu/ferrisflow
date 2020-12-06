@@ -8,11 +8,11 @@ use anyhow::{anyhow, Result};
 use byteorder::{BigEndian, ByteOrder, ReadBytesExt};
 use chrono::Utc;
 use std::io::prelude::*;
-use std::io::Cursor;
 use std::net::SocketAddr;
 use std::net::{Ipv4Addr, Ipv6Addr};
 use std::sync::Arc;
 use std::sync::RwLock;
+use std::{fmt::Display, io::Cursor};
 
 use super::super::flowmessage::FlowMessage;
 use super::super::flowmessage::FlowMessageBuilder;
@@ -30,6 +30,12 @@ impl NetflowV9Handler {
             template_cache: Arc::new(RwLock::new(TemplateCache::new())),
             option_cache: Arc::new(RwLock::new(OptionCache::new())),
         }
+    }
+}
+
+impl Display for NetflowV9Handler {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "NetflowV9Handler")
     }
 }
 

@@ -6,9 +6,9 @@ pub use netflow_v9::NetflowV9Handler;
 
 use super::flowmessage::FlowMessage;
 use anyhow::Result;
-use std::net::SocketAddr;
+use std::{fmt::Display, net::SocketAddr};
 
-pub trait Handler: Send {
+pub trait Handler: Send + Display {
     fn box_clone(&self) -> Box<dyn Handler>;
     fn handle(&self, buf: &Vec<u8>, size: usize, addr: SocketAddr) -> Result<Vec<FlowMessage>>;
 }

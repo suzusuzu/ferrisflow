@@ -2,7 +2,7 @@ use super::super::flowmessage::FlowMessage;
 use super::Publisher;
 use anyhow::Result;
 use csv::{Writer, WriterBuilder};
-use std::io::stdout;
+use std::{fmt::Display, io::stdout};
 
 #[derive(Debug, Clone)]
 pub struct CsvPublisher {}
@@ -21,6 +21,12 @@ impl CsvPublisher {
             );
         }
         CsvPublisher {}
+    }
+}
+
+impl Display for CsvPublisher {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "CsvPublisher")
     }
 }
 

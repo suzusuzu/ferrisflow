@@ -3,8 +3,8 @@ use super::super::flowmessage::FlowMessageBuilder;
 use super::Handler;
 use byteorder::{BigEndian, ReadBytesExt};
 use chrono::Utc;
-use std::io::Cursor;
 use std::net::Ipv4Addr;
+use std::{fmt::Display, io::Cursor};
 
 use anyhow::{anyhow, Result};
 use std::net::SocketAddr;
@@ -15,6 +15,12 @@ pub struct NetflowV5Handler {}
 impl NetflowV5Handler {
     pub fn new() -> NetflowV5Handler {
         NetflowV5Handler {}
+    }
+}
+
+impl Display for NetflowV5Handler {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "NetflowV5Handler")
     }
 }
 

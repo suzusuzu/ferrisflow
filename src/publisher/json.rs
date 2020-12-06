@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use super::super::flowmessage::FlowMessage;
 use super::Publisher;
 use anyhow::Result;
@@ -8,6 +10,12 @@ pub struct JsonPublisher {}
 impl JsonPublisher {
     pub fn new() -> JsonPublisher {
         JsonPublisher {}
+    }
+}
+
+impl Display for JsonPublisher {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "JsonPublisher")
     }
 }
 

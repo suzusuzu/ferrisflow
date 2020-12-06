@@ -24,6 +24,14 @@ async fn main() -> Result<(), Box<dyn Error>> {
         let netflow_v9_handler = Box::new(NetflowV9Handler::new());
         handlers.push(netflow_v9_handler);
     }
+    eprintln!(
+        "handlers: [{}]",
+        handlers
+            .iter()
+            .map(|x| x.to_string())
+            .collect::<Vec<String>>()
+            .join(", ")
+    );
 
     let mut publishers: Vec<Box<dyn Publisher>> = Vec::new();
     if opt.print {
@@ -38,6 +46,14 @@ async fn main() -> Result<(), Box<dyn Error>> {
         let csv_publisher = Box::new(CsvPublisher::new(opt.header_none));
         publishers.push(csv_publisher);
     }
+    eprintln!(
+        "publishers: [{}]",
+        publishers
+            .iter()
+            .map(|x| x.to_string())
+            .collect::<Vec<String>>()
+            .join(", ")
+    );
 
     let server = Server {
         socket: socket,

@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use super::flowmessage::FlowMessage;
 use anyhow::Result;
 
@@ -10,7 +12,7 @@ pub use json::JsonPublisher;
 pub mod csv;
 pub use self::csv::CsvPublisher;
 
-pub trait Publisher: Send {
+pub trait Publisher: Send + Display {
     fn box_clone(&self) -> Box<dyn Publisher>;
     fn publish(&self, flowmessages: &Vec<FlowMessage>) -> Result<()>;
 }
