@@ -1,7 +1,7 @@
 use super::super::flowmessage::FlowMessage;
 use super::Publisher;
 use anyhow::Result;
-use csv::{WriterBuilder};
+use csv::WriterBuilder;
 use std::{fmt::Display, io::stdout};
 
 #[derive(Debug, Clone)]
